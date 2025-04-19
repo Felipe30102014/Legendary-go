@@ -1,0 +1,165 @@
+/* Reset & globals */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f0f5;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.4;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  background: #0f131c;
+  padding: 10px 0;
+}
+
+.logo {
+  height: 36px;
+}
+
+.hamburger {
+  width: 24px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: #ccc;
+  margin: 4px 0;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.app-icon {
+  width: 100px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  color: #bbb;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.tab-button {
+  background: #2a2f3f;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-button img {
+  width: 24px;
+}
+
+.tab-button.active {
+  background: #3b4b6b;
+  box-shadow: 0 0 10px rgba(59, 75, 107, 0.6);
+}
+
+/* Tab contents */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Card */
+.card {
+  background: #262b3a;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon img {
+  width: 32px;
+}
+
+.android-bg {
+  background: #2e8b57;
+}
+
+.ios-bg {
+  background: #1f3bb3;
+}
+
+.windows-bg {
+  background: #7b52c1;
+}
+
+.card h2 {
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+.version {
+  color: #bbb;
+  margin-bottom: 16px;
+}
+
+.card ul {
+  list-style: none;
+  text-align: left;
+  color: #ccc;
+}
+
+.card li {
+  margin-bottom: 6px;
+}
+
+.card li strong {
+  color: #fff;
+}

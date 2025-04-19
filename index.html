@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legendary GO • Download</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <img class="logo" src="logo.png" alt=Legendary GO logo">
+      <nav class="hamburger">
+        <span></span><span></span><span></span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img class="app-icon" src="app-icon.png" alt="App icon">
+      <h1>Legendary GO</h1>
+      <p class="tagline">
+        A new Blockman GO Blocky Mods Experience. that should be released soon, we work hard to bring y'all best experience
+      </p>
+    </section>
+
+    <section class="download">
+      <div class="container">
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-button active" data-tab="android">
+            <img src="android.png" alt="">
+            <span>Android</span>
+          </button>
+          <button class="tab-button" data-tab="ios">
+            <img src="ios.png" alt="">
+            <span>iOS</span>
+          </button>
+          <button class="tab-button" data-tab="windows">
+            <img src="windows.png" alt="">
+            <span>Windows</span>
+          </button>
+        </div>
+
+        <!-- Tab contents -->
+        <div class="tab-content android active">
+          <div class="card">
+            <div class="card-icon android-bg">
+              <img src="android.png" alt="">
+            </div>
+            <h2>Android Version</h2>
+            <p class="version">Version 1.11.25</p>
+            <ul>
+              <li><strong>Status:</strong> Coming Soon</li>
+              <li><strong>Release Date:</strong> UNKNOWN</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tab-content ios">
+          <div class="card">
+            <div class="card-icon ios-bg">
+              <img src="ios.png" alt="">
+            </div>
+            <h2>iOS Version</h2>
+            <p class="version">Version 1.11.25</p>
+            <ul>
+              <li><strong>Status:</strong> Coming Soon</li>
+              <li><strong>Release Date:</strong> UNKNOWN</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tab-content windows">
+          <div class="card">
+            <div class="card-icon windows-bg">
+              <img src="windows.png" alt="">
+            </div>
+            <h2>Windows Version</h2>
+            <p class="version">Version 1.11.25</p>
+            <ul>
+              <li><strong>Status:</strong> Coming Soon</li>
+              <li><strong>Release Date:</strong> UNKNOWN</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Simple tab‑switcher
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        // buttons
+        document.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        // contents
+        document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+        document.querySelector(`.tab-content.${tab}`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
