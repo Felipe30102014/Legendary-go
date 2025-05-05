@@ -1,52 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exotic GO - Download</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Exotic GO Download</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top:0; left:0; right:0;
+      height:56px;
+      background:#111827;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 1rem;
+      z-index:10;
+    }
+    .nav-left {
+      display:flex;
+      align-items:center;
+    }
+    .nav-left img {
+      width:32px; height:32px; border-radius:6px;
+    }
+    .nav-left span {
+      margin-left:0.5rem;
+      font-size:1.125rem;
+      font-weight:600;
+    }
+
+    /* Hamburger and menu */
+    .hamburger {
+      font-size:1.5rem;
+      cursor:pointer;
+      user-select:none;
+    }
+    .menu {
+      position:absolute;
+      top:56px;
+      right:1rem;
+      background:#1f2937;
+      border-radius:0.5rem;
+      overflow:hidden;
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+      display:none;
+      flex-direction:column;
+    }
+    .menu a {
+      padding:0.75rem 1rem;
+      color:#f8fafc;
+      text-decoration:none;
+      display:block;
+      transition:background 0.2s;
+    }
+    .menu a:hover {
+      background:#374151;
+    }
+
+    /* PAGE */
+    .page {
+      display:flex;
+      justify-content:center;
+      padding:4rem 1rem 2rem;
+    }
+
+    /* CARD styling here (same as before)... */
+    .card {
+      width:100%;
+      max-width:360px;
+      background:#f8fafc;
+      color:#111827;
+      border-radius:1rem;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      position:relative;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #009BFF, #0000FF);
+      padding:2rem 1rem 3rem;
+      position: relative;
+    }
+    .card-header h2 {
+      color:#fff;
+      font-size:1.5rem;
+      margin-bottom:0.25rem;
+    }
+    .card-header p {
+      color:rgba(255,255,255,0.85);
+      font-size:0.9rem;
+    }
+    .avatar-wrapper {
+      position:absolute;
+      top:2.5rem;
+      left:50%;
+      transform:translateX(-50%);
+      width:96px; height:96px;
+      background:#fff;
+      border-radius:50%;
+      padding:4px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    }
+    .avatar-wrapper img {
+      width:100%; height:100%; border-radius:50%; object-fit:cover;
+    }
+    .card-body {
+      padding:5rem 1rem 2rem;
+      text-align:center;
+    }
+    .card-body h3 {
+      font-size:1.25rem;
+      margin-bottom:0.5rem;
+    }
+    .card-body p {
+      font-size:0.9rem;
+      color:#475569;
+      margin-bottom:1.5rem;
+    }
+    .tabs {
+      display:flex;
+      justify-content:space-around;
+      margin-bottom:1.5rem;
+    }
+    .tab {
+      flex:1;
+      background:#374151;
+      color:#f8fafc;
+      border:none;
+      padding:0.75rem 0;
+      margin:0 0.25rem;
+      border-radius:0.5rem;
+      font-size:0.9rem;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .tab img {
+      width:20px; height:20px;
+      margin-right:0.5rem;
+      filter: invert(1);
+    }
+    .tab.active {
+      background:#009BFF;
+      box-shadow:0 0 12px rgba(139,92,246,0.6);
+    }
+    .info-panel {
+      display:flex;
+      background:#1f2937;
+      padding:1rem;
+      border-radius:0.75rem;
+      align-items:center;
+      color:#f8fafc;
+    }
+    .info-panel + .info-panel {
+      margin-top:1rem;
+    }
+    .info-icon {
+      flex-shrink:0;
+      width:48px; height:48px;
+      background:#FFFFFF;
+      border-radius:0.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-right:1rem;
+    }
+    .info-icon img {
+      width:24px; height:24px;
+      filter:invert(1);
+    }
+    .info-panel h4 {
+      margin-bottom:0.25rem;
+      font-size:1rem;
+    }
+    .info-panel .status {
+      color:#009BFF;
+      font-weight:600;
+    }
+    .card-footer {
+      text-align:center;
+      padding:1rem;
+      font-size:0.85rem;
+      color:#64748b;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.5rem;
+    }
+    .card-footer svg {
+      width:16px; height:16px;
+      fill:#64748b;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- App Teams Logo and Text -->
-  <div class="app-logo">
-    <img src="app-teams-logo.png" alt="App Teams Logo" class="app-logo-img" />
- </div>
-
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+<!-- Navbar -->
+<header>
+  <div class="nav-left">
+    <img src="logo.png" alt="Logo"/>
+    <span>Exotic GO</span>
   </div>
-
-  <!-- Menu -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="menu">
-    <a href="index.html">Home</a>
-    <a href="screenshots.html">Pages</a>
-    <a href="https://discord.gg/cSQUMXeYAu" class="discord-btn" target="_blank">Join Our Discord Server</a>
+    <a href="start.html">Home</a>
+    <a href="index.html">Download</a>
   </div>
+</header>
 
-  <div class="container">
-    <div class="logo">
-      
+<!-- Page content -->
+<div class="page">
+  <div class="card">
+
+    <div class="card-header">
+      <h2>Exotic GO</h2>
+      <p>A Upcoming Blockman GO Experience</p>
     </div>
-    <h1>Exotic GO</h1>
-    <p>The Game will be released here soon</p>
-    <a href="exoticgo.apk" class="download-btn">Download APK</a>
-    <img src="" alt="" class="screenshot" />
-    <footer>&copy; 2025 Exotic GO. All rights reserved.</footer>
-  </div>
+    <div class="avatar-wrapper">
+      <img src="avatar.png" alt="Avatar"/>
+    </div>
 
-  <script>
-    // Toggle the menu visibility
-    function toggleMenu() {
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.getElementById('menu');
-      hamburger.classList.toggle('active');
-      menu.classList.toggle('active');
-    }
-  </script>
+    <div class="card-body">
+      <h3>Welcome To Exotic GO Download<h3>
+      <p>Explore a world Of Exotic mods and play with your friends!</p>
+
+      <div class="tabs">
+        <button class="tab active" data-target="android">
+          <img src="android.png" alt=""/> Android
+        </button>
+        <button class="tab" data-target="ios">
+          <img src="ios.png" alt=""/> iOS
+        </button>
+        <button class="tab" data-target="windows">
+          <img src="windows.png" alt=""/> Windows
+        </button>
+      </div>
+
+      <div class="info-panel" id="android">
+        <div class="info-icon"><img src="android.png" alt=""/></div>
+        <div>
+          <h4>Android Version</h4>
+          <p>Version 1.9.17</p>
+          <p>Status: <span class="status">Coming Soon</span></p>
+          <p>Release Date:Unknown</p>
+        </div>
+      </div>
+      <div class="info-panel" id="ios" hidden>
+        <div class="info-icon"><img src="ios.png" alt=""/></div>
+        <div>
+          <h4>iOS Version</h4>
+          <p>Version 1.9.17</p>
+          <p>Status: <span class="status">Coming Soon</span></p>
+          <p>Release Date:Unknown</p>
+        </div>
+      </div>
+      <div class="info-panel" id="windows" hidden>
+        <div class="info-icon"><img src="windows.png" alt=""/></div>
+        <div>
+          <h4>Windows Version</h4>
+          <p>Version 1.9.17</p>
+          <p>Status: <span class="status">Coming Soon</span></p>
+          <p>Release Date:Unknown</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <svg viewBox="0 0 20 20"><path d="M6.75 4a.75.75 0 00-.75.75v1.5H4.5a.75.75 0 000 1.5h1.5v1.5a.75.75 0 001.5 0V7.75H9.75a.75.75 0 000-1.5H7.75v-1.5A.75.75 0 006.75 4zm6.5 0a.75.75 0 00-.75.75v1.5H11a.75.75 0 000 1.5h1.5v1.5a.75.75 0 001.5 0V7.75H16.5a.75.75 0 000-1.5h-1.5v-1.5a.75.75 0 00-.75-.75zM4 12.75a2.5 2.5 0 012.5-2.5H14a2.5 2.5 0 012.5 2.5v3.5a.75.75 0 01-.75.75h-1.5a.75.75 0 01-.75-.75V14h-8v2a.75.75 0 01-.75.75H4.75a.75.75 0 01-.75-.75v-3.5z"/></svg>
+      <span>Games coming soon</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const tgt = btn.getAttribute('data-target');
+      document.querySelectorAll('.info-panel').forEach(p => p.hidden = p.id !== tgt);
+    });
+  });
+</script>
 
 </body>
 </html>
